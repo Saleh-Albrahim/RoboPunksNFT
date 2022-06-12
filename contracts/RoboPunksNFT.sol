@@ -1,4 +1,4 @@
-// SPX-License-Identifier: UNLICENSED
+//SPX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.4;
 
 import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
@@ -47,5 +47,10 @@ contract RoboPunksNFT is ERC721, Ownable {
         require(totalSupply + _quantity <= maxSupply,'Max supply reached !');
         require(walletMints[msg.sender] + _quantity <= maxPerWallet,'Max per wallet reached !');
 
+        for (uint i = 0; i < _quantity; i++) {
+            uint256 tokenId = totalSupply + 1;
+            totalSupply++;
+            _safeMint(msg.sender, tokenId);
+        }
     }
 }
